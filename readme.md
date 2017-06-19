@@ -1,46 +1,18 @@
 **Virtual host**
 
     <VirtualHost *:80>
-		<Directory "E:/wamp/www/offshore/vessel">
-			Require all granted
-	        AllowOverride All
-			Order Deny,Allow   
-			Allow from all 
-	    </Directory>
-	    SetEnv FUEL_ENV "development"
-	    DocumentRoot "E:/wamp/www/offshore/vessel/public/"
-	    ServerName localsv.vessel.net	
-	    ServerAlias localsv.vessel.net
-	    ErrorLog "E:/wamp/logs/vessel.log"
-	</VirtualHost>
+	    ServerAdmin khanhkid@example.com
+	    ServerName thesis.kid
+	    ServerAlias www.thesis.kid
+	    DocumentRoot /home/khanhkid/Desktop/website/website_thesis/public/
+	<Directory "/home/khanhkid/Desktop/website/website_thesis/public/">
+	   Require all granted
+	   Order allow,deny
+	   Allow from all
+	   # New directive needed in Apache 2.4.3:
+	</Directory>
+	 ErrorLog ${APACHE_LOG_DIR}/error.log
+	    CustomLog ${APACHE_LOG_DIR}/access.log combined
+     </VirtualHost>
 
-
-**Setup connect database**
-
-For developer: 
-	/fuel/app/config/development/db.php
-
-For production
-	/fuel/app/config/production/db.php
-
-
-----
-**Code for UserPage**: /fuel/app/modules/frontend
-	
-- Route User: /fuel/app/modules/frontend/config/routes.php
-- Template: /fuel/app/modules/frontend/views/template.php
-
-**Code for AdminPage**: /fuel/app/modules/wsroot
-	
-- Route Admin: /fuel/app/modules/wsroot/config/routes.php
-- Template: /fuel/app/modules/wsroot/views/template.php
-
-**Model**:  /fuel/app/classes/model
-
-
-
-----
-**Database admin user**: /database_demo/admin_user.sql
-For login admin page and manage user  
-
-http://[domian]/wsroot/users/index
+Create dir /public/userfiles/
