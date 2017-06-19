@@ -1,0 +1,23 @@
+<?php 
+    $linkHost = "http://".$_SERVER['SERVER_NAME'];
+    $listBrand = \Model_Brand::getAllItem();
+    $listCate = \Model_Cate::getAllItem();
+ ?>
+<h2 class="chay" >
+    <marquee >Chào mừng Quý khách đến với <span style="color:red;font-size:24px;font-weight: bold!important;">LAPTOP24</span> ,nơi chuyên <span style="color:blue;font-size:24px;font-weight: bold!important;">ban laptop cu gia re uy tin chat luong</span>, cam kết mọi<span style="font-weight: bold;"> laptop cu </span> bán với giá <span style="font-weight: bold;"> gia re nhat tai tphcm</span>, hân hạnh được phục vụ Quý khách hàng.</marquee>
+</h2>
+<img src="/assets/frontend/image/data/banner/laptop-cu-gia-re-uy-tin-chat-luong.jpg" alt="laptop cu gia re uy tin chat luong" width="/assets/frontend/940px;" height="250px;" style="margin-bottom: 20px;"   /><br/>
+<div id="menu-laptop">
+    <ul>
+        <?php foreach ($listBrand as $key => $value): ?>
+            <li><a href="/laptop/<?=$value['id']?>-<?=$value['seo']?>"><?=$value['value']?></a></li>
+        <?php endforeach ?>
+    </ul>
+</div>
+<div id="menu-laptop">
+    <ul>
+        <?php foreach ($listCate as $key => $value): ?>
+            <li><a href="javascript:void(0)"><input type="checkbox" name="cateID" class="cateID" value="<?=$value['id']?>"/> <?=$value['value']?></a></li>
+        <?php endforeach ?>
+    </ul>
+</div>

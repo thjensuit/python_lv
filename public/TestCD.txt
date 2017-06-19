@@ -1,0 +1,1 @@
+This is message from KhanhKid, I will test auto deploy from GitLab -> Our Testing server (http://diadora.wsgroup-asia.asia/)
