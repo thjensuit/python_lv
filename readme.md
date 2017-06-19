@@ -16,3 +16,8 @@
      </VirtualHost>
 
 Create dir /public/userfiles/
+
+
+Using python 2.7 & skicit learning to predict 
+1. Precipitation
+2. Temperature
