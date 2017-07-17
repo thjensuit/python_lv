@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Dashboard</h1>
+        <h1 class="page-header">Trang chủ</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -36,7 +36,7 @@
       ]);
       var options = {
         chart: {
-          title: 'Hien Thong Du Bao',
+          title: 'Kết quả dự báo',
           subtitle: 'Line Chart',
           "hAxis":{"title":"Date",showTextEvery:1},
         },
@@ -55,16 +55,16 @@
     <div class="col-lg-6 col-md-6">
         <form method="post" id="fr_submit" enctype="multipart/form-data" >
             <div class="form-group">
-                <input type="radio" id="systemFile" name="sysType" value="1" checked> Su dung du lieu he thong 
-                <input type="radio" id="clientFile" name="sysType" value="2" <?=(isset($_POST['sysType']) && $_POST['sysType']== 2)?'checked':''?>> Su dung du lieu nguoi dung
+                <input type="radio" id="systemFile" name="sysType" value="1" checked> Sử dụng dữ liệu hệ thống 
+                <input type="radio" id="clientFile" name="sysType" value="2" <?=(isset($_POST['sysType']) && $_POST['sysType']== 2)?'checked':''?>> Sử dụng dữ liệu người dùng
             </div>
             <div class="form-group" id="clientPart" <?=(isset($_POST['sysType']) && $_POST['sysType']== 2)?'':'style="display: none"'?>>
-                <div id="clientFile_option"><div class="form-group">Training file: <input type="file" name="training" id="training"></div></div>
+                <div id="clientFile_option"><div class="form-group">File huấn luyện: <input type="file" name="training" id="training"></div></div>
             </div>
             <div class="form-group" id="systemPart" <?=(isset($_POST['sysType']) && $_POST['sysType']!= 1)?'style="display: none"':''?>>
                 <div id="clientFile_option"> 
                     <div class="form-group">
-                        <span> Thang: </span>
+                        <span> Dự báo trong tháng: </span>
                         <select name="month">
                             <?php 
                                 for ($i=1; $i <13 ; $i++) { 
@@ -78,19 +78,19 @@
                     </div>
                 </div>
                 <div class="form-group" id="attriGroup">
-                    <div id="RelativeHumidity"><input class="btn_attri" type="checkbox" name="attri[]" checked value="2"/> [RelativeHumidity]<br></div>
-                    <div id="MaxTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="3"/> [MaxTemperature]<br></div>
-                    <div id="Solar"><input class="btn_attri" type="checkbox" name="attri[]" checked value="4"/> [Solar]<br></div>
-                    <div id="MinTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="5"/> [MinTemperature]<br></div>
-                    <div id="Wind"><input class="btn_attri" type="checkbox" name="attri[]" checked value="6"/> [Wind]</div>
+                    <div id="RelativeHumidity"><input class="btn_attri" type="checkbox" name="attri[]" checked value="2"/> [Độ ẩm]<br></div>
+                    <div id="MaxTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="3"/> [Nhiệt độ cao nhất]<br></div>
+                    <div id="Solar"><input class="btn_attri" type="checkbox" name="attri[]" checked value="4"/> [Năng lượng mặt trời]<br></div>
+                    <div id="MinTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="5"/> [Nhiệt độ nhỏ nhất]<br></div>
+                    <div id="Wind"><input class="btn_attri" type="checkbox" name="attri[]" checked value="6"/> [Năng lượng gió]</div>
                 </div>
                 <div class="form-group" >
-                    <strong><span style="color: red;" id="noteSystem">Bat buoc su dung format csv 'Du Lieu Nguon Du Bao': [RelativeHumidity],[MaxTemperature],[Solar],[MinTemperature],[Wind]</span></strong>
+                    <strong><span style="color: red;" id="noteSystem">Thứ tự vị trí các cột trong file csv: [Độ ẩm],[Nhiệt độ cao nhất],[Năng lượng mặt trời],[Nhiệt độ thấp nhất],[Năng lượng gió]</span></strong>
                 </div>
             </div>
 
             <div class="form-group">
-                <span> Du bao: </span>
+                <span> Dự báo: </span>
                 <select name="partName" id="partName">
                     <?php 
                         foreach ($arrAttr as $key => $value) {
@@ -102,20 +102,20 @@
                     ?>
                 </select>
             </div>
-            <div class="form-group">Du Lieu Nguon Du Bao :<input type="file" name="predict" id="predict"></div>
-            <div class="form-group">Real Data (option) :<input type="file" name="real" id="real"></div>
-            <input type="submit" value="Run Process" name="submit">
+            <div class="form-group">Dữ liệu dự báo :<input type="file" name="predict" id="predict"></div>
+            <div class="form-group">Dự liệu thật so sánh trên chart:<input type="file" name="real" id="real"></div>
+            <input type="submit" value="Tiến hành" name="submit">
         </form>
     </div>
 </div>
 
 <hr>
-<p>Time execute: <?=isset($time_excu)?$time_excu:"";?></p>
+<p>Thời gian thực thi: <?=isset($time_excu)?$time_excu:"";?></p>
 <?php 
     if (isset($indexAlogithm))
-        echo "<p>Indexs of Alogithm:".$indexAlogithm." </p>";
+        echo "<p>Các chỉ số đánh giá thuật toán:".$indexAlogithm." </p>";
 ?>
-<p>Download Prediction: <?=isset($fileDownload)?'<a href="/userfiles/'.$fileDownload.'" target="_blank">Download</a>':"";?></p>
+<p>Download kết quả dự báp: <?=isset($fileDownload)?'<a href="/userfiles/'.$fileDownload.'" target="_blank">Download</a>':"";?></p>
 <div id="linechart_material" style="width: 900px; height: 500px"></div>
 
 <script type="text/javascript">
@@ -128,11 +128,11 @@
             message = "";
             if(sysType == 2){
                 if($("#training").val()==""){
-                    message += "Chon file train\n";
+                    message += "Chọn file huấn luyện\n";
                 }
             }
             if($("#predict").val()==""){
-                message += "Chon file predict\n";
+                message += "Chọn file dự báo\n";
             }
             if(message != ""){
                 alert(message);
@@ -154,21 +154,21 @@
             case "1":
                 showAllAttri();
                 $("#Precipitation").remove();
-                $("#noteSystem").html("Bat buoc su dung format csv 'Du Lieu Nguon Du Bao': [RelativeHumidity],[MaxTemperature],[Solar],[MinTemperature],[Wind]");
+                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Relative Humidity,Min Temperature,Solar,Max Temperature,Wind]");
                 break;
             case "2":
                 showAllAttri();
                 $("#MaxTemperature").remove();
-                $("#noteSystem").html("Bat buoc su dung format csv 'Du Lieu Nguon Du Bao': [Precipitation],[RelativeHumidity],[Solar],[MinTemperature],[Wind]");
+                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Precipitation],[RelativeHumidity],[Solar],[MinTemperature],[Wind]");
                 break;
         }
     }
     function showAllAttri() {
-        $("#attriGroup").html('<div id="Precipitation"><input class="btn_attri" type="checkbox" name="attri[]" checked value="1"/> [Precipitation]<br></div>\
-                <div id="RelativeHumidity"><input class="btn_attri" type="checkbox" name="attri[]" checked value="2"/> [RelativeHumidity]<br></div>\
-                <div id="MaxTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="3"/> [MaxTemperature]<br></div>\
-                <div id="Solar"><input class="btn_attri" type="checkbox" name="attri[]" checked value="4"/> [Solar]<br></div>\
-                <div id="MinTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="5"/> [MinTemperature]<br></div>\
-                <div id="Wind"><input class="btn_attri" type="checkbox" name="attri[]" checked value="6"/> [Wind]</div>');
+        $("#attriGroup").html('<div id="Precipitation"><input class="btn_attri" type="checkbox" name="attri[]" checked value="1"/> [Lượng mưa]<br></div>\
+                <div id="RelativeHumidity"><input class="btn_attri" type="checkbox" name="attri[]" checked value="2"/> [Độ ẩm]<br></div>\
+                <div id="MaxTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="3"/> [Nhiệt độ cao nhất]<br></div>\
+                <div id="Solar"><input class="btn_attri" type="checkbox" name="attri[]" checked value="4"/> [Năng lượng mặt trời]<br></div>\
+                <div id="MinTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="5"/> [Nhiệt độ nhỏ nhất]<br></div>\
+                <div id="Wind"><input class="btn_attri" type="checkbox" name="attri[]" checked value="6"/> [Năng lượng gió]</div>');
     }
 </script>
