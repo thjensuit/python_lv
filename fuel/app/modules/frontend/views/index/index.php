@@ -56,7 +56,7 @@
         <form method="post" id="fr_submit" enctype="multipart/form-data" >
             <div class="form-group">
                 <input type="radio" id="systemFile" name="sysType" value="1" checked> Sử dụng dữ liệu hệ thống 
-                <input type="radio" id="clientFile" name="sysType" value="2" <?=(isset($_POST['sysType']) && $_POST['sysType']== 2)?'checked':''?>> Sử dụng dữ liệu người dùng
+                <input type="radio" id="clientFile" name="sysType" value="2" <?=(isset($_POST['sysType']) && $_POST['sysType']== 2)?'checked':''?>> Sử dụng dữ liệu cá nhân
             </div>
             <div class="form-group" id="clientPart" <?=(isset($_POST['sysType']) && $_POST['sysType']== 2)?'':'style="display: none"'?>>
                 <div id="clientFile_option"><div class="form-group">File huấn luyện: <input type="file" name="training" id="training"></div></div>
@@ -77,11 +77,14 @@
                         </select>
                     </div>
                 </div>
+                <div class="form-group" >
+                    <strong><span style="color: red;" id="noteSystem">Các yếu tố hỗ trợ dự báo:</span></strong>
+                </div>
                 <div class="form-group" id="attriGroup">
                     <div id="RelativeHumidity"><input class="btn_attri" type="checkbox" name="attri[]" checked value="2"/> [Độ ẩm]<br></div>
-                    <div id="MaxTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="3"/> [Nhiệt độ cao nhất]<br></div>
-                    <div id="Solar"><input class="btn_attri" type="checkbox" name="attri[]" checked value="4"/> [Năng lượng mặt trời]<br></div>
                     <div id="MinTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="5"/> [Nhiệt độ nhỏ nhất]<br></div>
+                    <div id="Solar"><input class="btn_attri" type="checkbox" name="attri[]" checked value="4"/> [Năng lượng mặt trời]<br></div>
+                    <div id="MaxTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="3"/> [Nhiệt độ cao nhất]<br></div>
                     <div id="Wind"><input class="btn_attri" type="checkbox" name="attri[]" checked value="6"/> [Năng lượng gió]</div>
                 </div>
                 <div class="form-group" >
@@ -153,36 +156,44 @@
         showAllAttri();
         switch(partName) {
             case "1":
-                $("#Precipitation").remove();
                 $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Relative Humidity,Min Temperature,Solar,Max Temperature,Wind]");
                 break;
             case "2":
-        	    $("#RelativeHumidity").remove();
                 $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo:  [Solar,Wind,Max Temperature,Min Temperature,Precipitation]");
             case "3":
-        	    $("#MaxTemperature").remove();
                 $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Solar, Min Temperature, Relative Humidity, Wind, Precipitation]");
                 break;
             case "4":
-        	    $("#Solar").remove();
                 $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Max Temperature,Relative Humidity,Precipitation,Min Temperature,Wind]");
                 break;
             case "5":
-        	    $("#MinTemperature").remove();
                 $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Solar,Max Temperature,Precipitation,Relative Humidity,Wind]");
                 break;
             case "6":
-        	    $("#Wind").remove();
                 $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Solar,Max Temperature,Precipitation,Min Temperature,Relative Humidity]");
                 break;
         }
     }
-    function showAllAttri() {
-        $("#attriGroup").html('<div id="Precipitation"><input class="btn_attri" type="checkbox" name="attri[]" checked value="1"/> [Lượng mưa]<br></div>\
-                <div id="RelativeHumidity"><input class="btn_attri" type="checkbox" name="attri[]" checked value="2"/> [Độ ẩm]<br></div>\
-                <div id="MaxTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="3"/> [Nhiệt độ cao nhất]<br></div>\
-                <div id="Solar"><input class="btn_attri" type="checkbox" name="attri[]" checked value="4"/> [Năng lượng mặt trời]<br></div>\
-                <div id="MinTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="5"/> [Nhiệt độ nhỏ nhất]<br></div>\
-                <div id="Wind"><input class="btn_attri" type="checkbox" name="attri[]" checked value="6"/> [Năng lượng gió]</div>');
+    function showAllAttri(arrRelated) {
+    	var strInput = "";
+    	for (var i = 0; i < arrRelated.length; i++) {
+    		switch(arrRelated[i]) {
+			    case 1:
+			        strInput += '<div id="Precipitation"><input class="btn_attri" type="checkbox" name="attri[]" checked value="1"/> [Lượng mưa]<br></div>';
+			        break;
+			    case 2:
+			        strInput += '<div id="RelativeHumidity"><input class="btn_attri" type="checkbox" name="attri[]" checked value="2"/> [Độ ẩm]<br></div>';
+			    case 3:
+			        strInput += '<div id="MaxTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="3"/> [Nhiệt độ cao nhất]<br></div>';
+			    case 4:
+			        strInput += '<div id="Solar"><input class="btn_attri" type="checkbox" name="attri[]" checked value="4"/> [Năng lượng mặt trời]<br></div>';
+			    case 5:
+			        strInput += '<div id="MinTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="5"/> [Nhiệt độ nhỏ nhất]<br></div>';
+			    case 6:
+			        strInput += '<div id="Wind"><input class="btn_attri" type="checkbox" name="attri[]" checked value="6"/> [Năng lượng gió]</div>';
+			        break;
+			}
+    	}
+        $("#attriGroup").html(strInput);
     }
 </script>
