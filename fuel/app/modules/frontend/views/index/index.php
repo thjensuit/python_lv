@@ -17,9 +17,9 @@
 
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'No');
-      data.addColumn('number', 'predict');
+      data.addColumn('number', 'Dự báo');
       <?php 
-        if(isset($arrReal)) echo "data.addColumn('number', 'real');"
+        if(isset($arrReal)) echo "data.addColumn('number', 'Thực đo');"
       ?>
 
       data.addRows(
@@ -37,7 +37,7 @@
       var options = {
         chart: {
           title: 'Kết quả dự báo',
-          subtitle: 'Line Chart',
+          subtitle: 'Biểu đồ',
           "hAxis":{"title":"Date",showTextEvery:1},
         },
         width: 1000,
@@ -103,7 +103,7 @@
                 </select>
             </div>
             <div class="form-group">Dữ liệu dự báo :<input type="file" name="predict" id="predict"></div>
-            <div class="form-group">Dự liệu thật so sánh trên chart:<input type="file" name="real" id="real"></div>
+            <div class="form-group">Dự liệu thực đo (nếu có) <i>* Dùng để so sánh với thực tế</i>:<input type="file" name="real" id="real"></div>
             <input type="submit" value="Tiến hành" name="submit">
         </form>
     </div>
@@ -150,15 +150,14 @@
     });
 
     function updateNote(partName) {
+        showAllAttri();
         switch(partName) {
             case "1":
-                showAllAttri();
                 $("#Precipitation").remove();
                 $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Relative Humidity,Min Temperature,Solar,Max Temperature,Wind]");
                 break;
             case "2":
-                showAllAttri();
-                $("#MaxTemperature").remove();
+        	    $("#MaxTemperature").remove();
                 $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Precipitation],[RelativeHumidity],[Solar],[MinTemperature],[Wind]");
                 break;
         }
