@@ -46,8 +46,9 @@ def caculateIndex(arrPredict,test_y,dirPath = ""):
 def caculateMetrics(test_y,predict_y):
 	print mean_absolute_error(test_y,predict_y),mean_squared_error(test_y,predict_y),median_absolute_error(test_y,predict_y)
 
-def PrecipitationSVR(train_x,train_y,test_x,real_y,outputfile):
-	regr = svm.SVR(kernel='rbf', C=1e3, gamma=0.1)
+def Precipitation(train_x,train_y,test_x,real_y,outputfile):
+	regr = MLPRegressor(hidden_layer_sizes=(100, ),activation="tanh",
+									solver="lbfgs",learning_rate="constant")
 	predict_y = regr.fit(train_x, train_y).predict(test_x)
 	savetxt(outputfile+'precipitation_predict_.txt', predict_y, delimiter=',')
 	result = [outputfile+'precipitation_predict_.txt']
@@ -56,26 +57,59 @@ def PrecipitationSVR(train_x,train_y,test_x,real_y,outputfile):
 		result = [outputfile+'precipitation_predict_.txt',outputfile+"precipitation_index_.txt"]
 	return json.dumps(result)
 
-def PrecipitationRF(train_x,train_y,test_x,real_y,outputfile):
-	regr = ensemble.RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None, max_features='auto',
-		random_state=3, min_samples_leaf=1, min_samples_split=2,n_estimators=100, n_jobs=2, oob_score=False,verbose=0)
+def MaxTemperature(train_x,train_y,test_x,real_y,outputfile):
+	regr = MLPRegressor(hidden_layer_sizes=(400, ),activation="tanh",
+									solver="lbfgs",learning_rate="invscaling")
 	predict_y = regr.fit(train_x, train_y).predict(test_x)
-	savetxt(outputfile+'precipitation_predict_.txt', predict_y, delimiter=',')
-	result = [outputfile+'precipitation_predict_.txt']
+	savetxt(outputfile+'maxtemperature_predict_.txt', predict_y, delimiter=',')
+	result = [outputfile+'maxtemperature_predict_.txt']
 	if len(real_y)>0:
-		caculateIndex(predict_y,real_y,outputfile+"precipitation_index_.txt")
-		result = [outputfile+'precipitation_predict_.txt',outputfile+"precipitation_index_.txt"]
+		caculateIndex(predict_y,real_y,outputfile+"maxtemperature_index_.txt")
+		result = [outputfile+'maxtemperature_predict_.txt',outputfile+"maxtemperature_index_.txt"]
 	return json.dumps(result)
 
-def TemperatureMLP(train_x,train_y,test_x,real_y,outputfile):
-	regr = MLPRegressor(hidden_layer_sizes=(500, ),activation="identity",
-									solver="lbfgs",learning_rate="adaptive")
+def MinTemperature(train_x,train_y,test_x,real_y,outputfile):
+	regr = MLPRegressor(hidden_layer_sizes=(500, ),activation="relu",
+									solver="lbfgs",learning_rate="invscaling")
 	predict_y = regr.fit(train_x, train_y).predict(test_x)
-	savetxt(outputfile+'temperature_predict_.txt', predict_y, delimiter=',')
-	result = [outputfile+'temperature_predict_.txt']
+	savetxt(outputfile+'minTemperature_predict_.txt', predict_y, delimiter=',')
+	result = [outputfile+'minTemperature_predict_.txt']
 	if len(real_y)>0:
-		caculateIndex(predict_y,real_y,outputfile+"temperature_index_.txt")
-		result = [outputfile+'temperature_predict_.txt',outputfile+"temperature_index_.txt"]
+		caculateIndex(predict_y,real_y,outputfile+"minTemperature_index_.txt")
+		result = [outputfile+'minTemperature_predict_.txt',outputfile+"minTemperature_index_.txt"]
+	return json.dumps(result)
+
+def RelativeHumidity(train_x,train_y,test_x,real_y,outputfile):
+	regr = MLPRegressor(hidden_layer_sizes=(500, ),activation="tanh",
+									solver="adam",learning_rate="constant")
+	predict_y = regr.fit(train_x, train_y).predict(test_x)
+	savetxt(outputfile+'RelativeHumidity_predict_.txt', predict_y, delimiter=',')
+	result = [outputfile+'RelativeHumidity_predict_.txt']
+	if len(real_y)>0:
+		caculateIndex(predict_y,real_y,outputfile+"RelativeHumidity_index_.txt")
+		result = [outputfile+'RelativeHumidity_predict_.txt',outputfile+"RelativeHumidity_index_.txt"]
+	return json.dumps(result)
+
+def Solar(train_x,train_y,test_x,real_y,outputfile):
+	regr = MLPRegressor(hidden_layer_sizes=(200, ),activation="relu",
+									solver="lbfgs",learning_rate="invscaling")
+	predict_y = regr.fit(train_x, train_y).predict(test_x)
+	savetxt(outputfile+'Solar_predict_.txt', predict_y, delimiter=',')
+	result = [outputfile+'Solar_predict_.txt']
+	if len(real_y)>0:
+		caculateIndex(predict_y,real_y,outputfile+"Solar_index_.txt")
+		result = [outputfile+'Solar_predict_.txt',outputfile+"Solar_index_.txt"]
+	return json.dumps(result)
+
+def Wind(train_x,train_y,test_x,real_y,outputfile):
+	regr = MLPRegressor(hidden_layer_sizes=(200, ),activation="relu",
+									solver="lbfgs",learning_rate="constant")
+	predict_y = regr.fit(train_x, train_y).predict(test_x)
+	savetxt(outputfile+'Wind_predict_.txt', predict_y, delimiter=',')
+	result = [outputfile+'Wind_predict_.txt']
+	if len(real_y)>0:
+		caculateIndex(predict_y,real_y,outputfile+"Wind_index_.txt")
+		result = [outputfile+'Wind_predict_.txt',outputfile+"Wind_index_.txt"]
 	return json.dumps(result)
 
 argv = sys.argv[1:]
@@ -139,9 +173,17 @@ if month != "" and outputfile != "" and predict != "":
 	real_y = [];
 	if real != "":
 		real_y = genfromtxt(open(real,'r'), delimiter=',', dtype='f8')[0:]
-	#print train_x,train_y,test_x
+		
 	if typesys == '1':
-		print PrecipitationSVR(train_x,train_y,test_x,real_y,outputfile)
+		print Precipitation(train_x,train_y,test_x,real_y,outputfile)
+	elif typesys == '2':
+		print RelativeHumidity(train_x,train_y,test_x,real_y,outputfile)
 	elif typesys == '3':
-		print TemperatureMLP(train_x,train_y,test_x,real_y,outputfile)
+		print MaxTemperature(train_x,train_y,test_x,real_y,outputfile)
+	elif typesys == '4':
+		print Solar(train_x,train_y,test_x,real_y,outputfile)
+	elif typesys == '5':
+		print MinTemperature(train_x,train_y,test_x,real_y,outputfile)
+	elif typesys == '6':
+		print Wind(train_x,train_y,test_x,real_y,outputfile)
 
