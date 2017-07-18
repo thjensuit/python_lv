@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 <div class="form-group" >
-                    <strong><span style="color: red;" id="noteSystem">Các yếu tố hỗ trợ dự báo:</span></strong>
+                    <strong><span>Các yếu tố hỗ trợ dự báo:</span></strong>
                 </div>
                 <div class="form-group" id="attriGroup">
                     <div id="RelativeHumidity"><input class="btn_attri" type="checkbox" name="attri[]" checked value="2"/> [Độ ẩm]<br></div>
@@ -153,7 +153,6 @@
     });
 
     function updateNote(partName) {
-        showAllAttri();
         switch(partName) {
             case "1":
             	showAllAttri([2,5,4,3,6])
@@ -189,12 +188,16 @@
 			        break;
 			    case 2:
 			        strInput += '<div id="RelativeHumidity"><input class="btn_attri" type="checkbox" name="attri[]" checked value="2"/> [Độ ẩm]<br></div>';
+                    break;
 			    case 3:
 			        strInput += '<div id="MaxTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="3"/> [Nhiệt độ cao nhất]<br></div>';
+                    break;
 			    case 4:
 			        strInput += '<div id="Solar"><input class="btn_attri" type="checkbox" name="attri[]" checked value="4"/> [Năng lượng mặt trời]<br></div>';
+                    break;
 			    case 5:
 			        strInput += '<div id="MinTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="5"/> [Nhiệt độ nhỏ nhất]<br></div>';
+                    break;
 			    case 6:
 			        strInput += '<div id="Wind"><input class="btn_attri" type="checkbox" name="attri[]" checked value="6"/> [Năng lượng gió]</div>';
 			        break;

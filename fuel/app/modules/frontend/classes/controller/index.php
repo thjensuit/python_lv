@@ -30,7 +30,7 @@ class Controller_Index extends Controller_Base{
             $predictFile = APPPATH_USERFILE . $newfilename;
 
             $realFile ="";
-            if(isset($_FILES["real"]["name"])){
+            if(isset($_FILES["real"]["name"]) && $_FILES["real"]["tmp_name"] !=""){
                 $fh = fopen($_FILES["real"]["tmp_name"],'r');
 
                 $temp = explode(".", $_FILES["real"]["name"]);
