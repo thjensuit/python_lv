@@ -90,7 +90,7 @@
                         </li>
 
                         <li>
-                            <a href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="/"><i class="fa fa-dashboard fa-fw"></i> Trang dự báo</a>
                         </li>
                     </ul>
                 </div>
