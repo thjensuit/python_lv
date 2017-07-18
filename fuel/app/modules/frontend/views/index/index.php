@@ -157,8 +157,23 @@
                 $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Relative Humidity,Min Temperature,Solar,Max Temperature,Wind]");
                 break;
             case "2":
+        	    $("#RelativeHumidity").remove();
+                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo:  [Solar,Wind,Max Temperature,Min Temperature,Precipitation]");
+            case "3":
         	    $("#MaxTemperature").remove();
-                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Precipitation],[RelativeHumidity],[Solar],[MinTemperature],[Wind]");
+                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Solar, Min Temperature, Relative Humidity, Wind, Precipitation]");
+                break;
+            case "4":
+        	    $("#Solar").remove();
+                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Max Temperature,Relative Humidity,Precipitation,Min Temperature,Wind]");
+                break;
+            case "5":
+        	    $("#MinTemperature").remove();
+                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Solar,Max Temperature,Precipitation,Relative Humidity,Wind]");
+                break;
+            case "6":
+        	    $("#Wind").remove();
+                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Solar,Max Temperature,Precipitation,Min Temperature,Relative Humidity]");
                 break;
         }
     }
