@@ -85,10 +85,10 @@
                     <div id="MinTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="5"/> [Nhiệt độ nhỏ nhất]<br></div>
                     <div id="Solar"><input class="btn_attri" type="checkbox" name="attri[]" checked value="4"/> [Năng lượng mặt trời]<br></div>
                     <div id="MaxTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="3"/> [Nhiệt độ cao nhất]<br></div>
-                    <div id="Wind"><input class="btn_attri" type="checkbox" name="attri[]" checked value="6"/> [Năng lượng gió]</div>
+                    <div id="Wind"><input class="btn_attri" type="checkbox" name="attri[]" checked value="6"/> [gió]</div>
                 </div>
                 <div class="form-group" >
-                    <strong><span style="color: red;" id="noteSystem">Thứ tự vị trí các cột trong file csv: [Độ ẩm],[Nhiệt độ cao nhất],[Năng lượng mặt trời],[Nhiệt độ thấp nhất],[Năng lượng gió]</span></strong>
+                    <strong><span style="color: red;" id="noteSystem">Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Độ ẩm],[Nhiệt độ cao nhất],[Năng lượng mặt trời],[Nhiệt độ thấp nhất],[Năng lượng gió]</span></strong>
                 </div>
             </div>
 
