@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Trang chủ</h1>
+        <img src="/assets/img/banner.png">
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -85,7 +85,7 @@
                     <div id="MinTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="5"/> [Nhiệt độ nhỏ nhất]<br></div>
                     <div id="Solar"><input class="btn_attri" type="checkbox" name="attri[]" checked value="4"/> [Năng lượng mặt trời]<br></div>
                     <div id="MaxTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="3"/> [Nhiệt độ cao nhất]<br></div>
-                    <div id="Wind"><input class="btn_attri" type="checkbox" name="attri[]" checked value="6"/> [gió]</div>
+                    <div id="Wind"><input class="btn_attri" type="checkbox" name="attri[]" checked value="6"/> [Gió]</div>
                 </div>
                 <div class="form-group" >
                     <strong><span style="color: red;" id="noteSystem">Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Độ ẩm],[Nhiệt độ cao nhất],[Năng lượng mặt trời],[Nhiệt độ thấp nhất],[Năng lượng gió]</span></strong>

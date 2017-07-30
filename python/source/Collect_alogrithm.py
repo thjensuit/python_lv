@@ -54,6 +54,12 @@ def dochinhxac(y_true,y_pred):
 			result.insert(0,1-lech)
 	return np.mean(result)
 
+def getMainColumn(arrRelated):
+	for i in range(1,7):
+		check = i in arrRelated
+		if check == False:
+			return i
+
 def Precipitation(train_x,train_y,test_x,real_y,outputfile):
 	regr = MLPRegressor(hidden_layer_sizes=(100, ),activation="tanh",
 									solver="lbfgs",learning_rate="constant")
@@ -184,7 +190,7 @@ if month != "" and outputfile != "" and predict != "" and training == "":
 	arrRelated = map(int, config.split(','))
 	dataset = genfromtxt(open(month,'r'), delimiter=',', dtype='f8')[0:]
 	train_x = dataset[:-30,arrRelated]
-	train_y = dataset[:-30,1]
+	train_y = dataset[:-30,getMainColumn(arrRelated)]
 	predict_set = genfromtxt(open(predict,'r'), delimiter=',', dtype='f8')[0:]
 	test_x = predict_set[:,:]
 	real_y = [];
