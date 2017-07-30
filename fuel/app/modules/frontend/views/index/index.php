@@ -154,27 +154,27 @@
 
     function updateNote(partName) {
         switch(partName) {
-            case "1":
+            case "1": // Lượng mưa
             	showAllAttri([2,5,4,3,6])
                 $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Độ ẩm,Nhiệt độ nhỏ nhất,Năng lượng mặt trời,Nhiệt độ cao nhất,Gió]");
                 break;
-            case "2":
+            case "2": // Độ ẩm
             	showAllAttri([4,6,3,5,1])
                 $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo:  [Năng lượng mặt trời,Gió,Nhiệt độ cao nhất,Nhiệt độ nhỏ nhất,Lượng mưa]");
                 break;
-            case "3":
+            case "3": // nhiệt độ cao nhất
             	showAllAttri([4,5,2,6,1])
                 $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Năng lượng mặt trời, Nhiệt độ nhỏ nhất, Độ ẩm, Gió, Lượng mưa]");
                 break;
-            case "4":
+            case "4": // Năng lượng mặt trời
             	showAllAttri([3,2,1,5,6])
                 $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Nhiệt độ cao nhất,Độ ẩm,Lượng mưa,Nhiệt độ nhỏ nhất,Gió]");
                 break;
-            case "5":
+            case "5":// Nhiệt độ thấp nhất
             	showAllAttri([4,3,1,2,6])
                 $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Năng lượng mặt trời,Nhiệt độ cao nhất,Lượng mưa,Độ ẩm,Gió]");
                 break;
-            case "6":
+            case "6":// Gió
             	showAllAttri([4,3,1,6,2])
                 $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Năng lượng mặt trời,Nhiệt độ cao nhất,Lượng mưa,Nhiệt độ nhỏ nhất,Độ ẩm]");
                 break;

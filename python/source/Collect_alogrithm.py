@@ -41,7 +41,7 @@ def caculateIndex(arrPredict,test_y,dirPath = ""):
 	AVG_RMSE= sqrt(Sum_RMSE/(key+1))
 	PercentChinhXac = dochinhxac(test_y,arrPredict)
 	with open(dirPath, "ab") as myfile:
-		myfile.write("ME: %s,MEA: %s,RMSE: %s, Độ chính xác: %s\n" % (AVG_ME,AVG_MEA,AVG_RMSE,PercentChinhXac))
+		myfile.write("ME: %s,MEA: %s,RMSE: %s, Do Chinh Xac: %s\n" % (AVG_ME,AVG_MEA,AVG_RMSE,PercentChinhXac))
 
 def caculateMetrics(test_y,predict_y):
 	print mean_absolute_error(test_y,predict_y),mean_squared_error(test_y,predict_y),median_absolute_error(test_y,predict_y)
@@ -49,7 +49,7 @@ def caculateMetrics(test_y,predict_y):
 def dochinhxac(y_true,y_pred):
 	result = [];
 	for i in range(0,len(y_true)):
-		if(y_true[i] > 0)
+		if y_true[i] > 0:
 			lech = abs(y_pred[i] - y_true[i])/y_true[i]
 			result.insert(0,1-lech)
 	return np.mean(result)
@@ -203,4 +203,3 @@ if month != "" and outputfile != "" and predict != "" and training == "":
 		print MinTemperature(train_x,train_y,test_x,real_y,outputfile)
 	elif typesys == '6':
 		print Wind(train_x,train_y,test_x,real_y,outputfile)
-
