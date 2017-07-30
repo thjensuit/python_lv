@@ -156,26 +156,27 @@
         switch(partName) {
             case "1":
             	showAllAttri([2,5,4,3,6])
-                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Relative Humidity,Min Temperature,Solar,Max Temperature,Wind]");
+                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Độ ẩm,Nhiệt độ nhỏ nhất,Năng lượng mặt trời,Nhiệt độ cao nhất,Gió]");
                 break;
             case "2":
             	showAllAttri([4,6,3,5,1])
-                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo:  [Solar,Wind,Max Temperature,Min Temperature,Precipitation]");
+                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo:  [Năng lượng mặt trời,Gió,Nhiệt độ cao nhất,Nhiệt độ nhỏ nhất,Lượng mưa]");
+                break;
             case "3":
             	showAllAttri([4,5,2,6,1])
-                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Solar, Min Temperature, Relative Humidity, Wind, Precipitation]");
+                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Năng lượng mặt trời, Nhiệt độ nhỏ nhất, Độ ẩm, Gió, Lượng mưa]");
                 break;
             case "4":
             	showAllAttri([3,2,1,5,6])
-                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Max Temperature,Relative Humidity,Precipitation,Min Temperature,Wind]");
+                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Nhiệt độ cao nhất,Độ ẩm,Lượng mưa,Nhiệt độ nhỏ nhất,Gió]");
                 break;
             case "5":
             	showAllAttri([4,3,1,2,6])
-                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Solar,Max Temperature,Precipitation,Relative Humidity,Wind]");
+                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Năng lượng mặt trời,Nhiệt độ cao nhất,Lượng mưa,Độ ẩm,Gió]");
                 break;
             case "6":
             	showAllAttri([4,3,1,6,2])
-                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Solar,Max Temperature,Precipitation,Min Temperature,Relative Humidity]");
+                $("#noteSystem").html("Thứ tự vị trí các cột trong file csv dữ liệu dự báo: [Năng lượng mặt trời,Nhiệt độ cao nhất,Lượng mưa,Nhiệt độ nhỏ nhất,Độ ẩm]");
                 break;
         }
     }
@@ -199,7 +200,7 @@
 			        strInput += '<div id="MinTemperature"><input class="btn_attri" type="checkbox" name="attri[]" checked value="5"/> [Nhiệt độ nhỏ nhất]<br></div>';
                     break;
 			    case 6:
-			        strInput += '<div id="Wind"><input class="btn_attri" type="checkbox" name="attri[]" checked value="6"/> [Năng lượng gió]</div>';
+			        strInput += '<div id="Wind"><input class="btn_attri" type="checkbox" name="attri[]" checked value="6"/> [Gió]</div>';
 			        break;
 			}
     	}

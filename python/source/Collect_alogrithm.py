@@ -151,18 +151,27 @@ if training != "" and outputfile != "" and predict != "":
 	train_x = dataset[:,1:]
 	train_y = dataset[:,0]
 	predict_set = genfromtxt(open(predict,'r'), delimiter=',', dtype='f8')[0:]
+	print predict_set,predict
 	test_x = predict_set[:,:]
 	real_y = [];
 	if real != "":
 		real_y = genfromtxt(open(real,'r'), delimiter=',', dtype='f8')[0:]
 
-	if  typesys == '1':
-		print PrecipitationSVR(train_x,train_y,test_x,real_y,outputfile)
+	if typesys == '1':
+		print Precipitation(train_x,train_y,test_x,real_y,outputfile)
+	elif typesys == '2':
+		print RelativeHumidity(train_x,train_y,test_x,real_y,outputfile)
 	elif typesys == '3':
-		print TemperatureMLP(train_x,train_y,test_x,real_y,outputfile)
+		print MaxTemperature(train_x,train_y,test_x,real_y,outputfile)
+	elif typesys == '4':
+		print Solar(train_x,train_y,test_x,real_y,outputfile)
+	elif typesys == '5':
+		print MinTemperature(train_x,train_y,test_x,real_y,outputfile)
+	elif typesys == '6':
+		print Wind(train_x,train_y,test_x,real_y,outputfile)
 
 #this part user using our database
-if month != "" and outputfile != "" and predict != "":
+if month != "" and outputfile != "" and predict != "" and training == "":
 	# structure our database 0:Date 1:Precipitation 2:RelativeHumidity 3:MaxTemperature $:Solar 5:MinTemperature 6:Wind
 	arrRelated = map(int, config.split(','))
 	dataset = genfromtxt(open(month,'r'), delimiter=',', dtype='f8')[0:]
