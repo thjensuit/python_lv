@@ -7,7 +7,7 @@ use \Auth;
 use \Input;
 use \Session;
 
-class Controller_Index extends Controller_Base{
+class Controller_DuBao extends Controller_Base{
     public $template = 'template';
 
     public function before(){
@@ -23,11 +23,7 @@ class Controller_Index extends Controller_Base{
             $partName = Input::post('partName'); //
             $sysType = Input::post('sysType');
 
-            $temp = explode(".", $_FILES["predict"]["name"]);
-            $newfilename = 'predict'.$timestamp.'.' . end($temp);
-            move_uploaded_file($_FILES["predict"]["tmp_name"], APPPATH_USERFILE . $newfilename);
-            chmod (APPPATH_USERFILE . $newfilename, "0755");
-            $predictFile = APPPATH_USERFILE . $newfilename;
+            $day_of_preidict = Input::post('predict');
 
             $realFile ="";
             if(isset($_FILES["real"]["name"]) && $_FILES["real"]["tmp_name"] !=""){
@@ -50,10 +46,8 @@ class Controller_Index extends Controller_Base{
             }
 
             if($sysType == 1){// using data our system
-                $listAttri = Input::post('attri');
                 $month = Input::post("month");
-                $linkMonth = DOCROOT."data_standard/".$month.".csv";       
-                $execComd = 'sudo -u khanhkid python '.PYTHONPATH.'source/Collect_alogrithm.py -m '.$linkMonth.' -o '.APPPATH_USERFILE.' -p '.$predictFile.' -c '.implode(",",$listAttri)." -t ".$partName.$realFile;
+                $execComd = 'sudo -u khanhkid python '.PYTHONPATH.'source/DuBao.py -m '.$month.' -o '.APPPATH_USERFILE.' -d '.$day_of_preidict." -t ".$partName.$realFile;
             }else{// using client database
                 $temp = explode(".", $_FILES["training"]["name"]);
                 $newfilename = 'train'.$timestamp.'.' . end($temp);
@@ -61,7 +55,7 @@ class Controller_Index extends Controller_Base{
                 chmod (APPPATH_USERFILE . $newfilename, "0755");
 
                 $trainingFile = APPPATH_USERFILE . $newfilename;
-                $execComd = 'sudo -u khanhkid python '.PYTHONPATH.'source/Collect_alogrithm.py -i '.$trainingFile.' -o '.APPPATH_USERFILE.' -p '.$predictFile." -t ".$partName.$realFile;
+                $execComd = 'sudo -u khanhkid python '.PYTHONPATH.'source/DuBao.py -i '.$trainingFile.' -o '.APPPATH_USERFILE.' -p '.$predictFile." -t ".$partName.$realFile;
             } 
             $linkResult = exec($execComd);
             if($linkResult != ""){
@@ -101,12 +95,8 @@ class Controller_Index extends Controller_Base{
                         );
         $data['arrAttr'] = $arrAttr;
         $this->template->meta = $this->metaTag();
-        $this->template->content = View::forge('index/index',$data);
+        $this->template->content = View::forge('dubao/dubao',$data);
     } 
-    public function action_404()
-    {
-        die("tests");
-    }
     function urlExists($url=NULL)  
     {  
         if($url == NULL) return false;  

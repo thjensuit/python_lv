@@ -84,8 +84,8 @@
                         </li>  
 
                         <li>
-                            <a href="/"><i class="fa fa-dashboard fa-fw"></i> Trang Hieu Chinh</a>
-                            <a href="/dubao/"><i class="fa fa-dashboard fa-fw"></i> Trang Du Bao</a>
+                            <a href="/"><i class="fa fa-dashboard fa-fw"></i> Trang Hiệu chỉnh</a>
+                            <a href="/dubao/"><i class="fa fa-dashboard fa-fw"></i> Trang Dự báo</a>
                         </li>
                     </ul>
                 </div>

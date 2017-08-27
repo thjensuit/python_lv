@@ -9,6 +9,7 @@ import numpy as np
 from sklearn.metrics import mean_squared_error
 from numpy import genfromtxt, savetxt
 import sys, getopt
+import os
 
 import json
 # reference: https://machinelearningmastery.com/make-sample-forecasts-arima-python/
@@ -80,33 +81,32 @@ typesys = '' # precication, tempurature, wind ...
 days_predict = 30 # precication, tempurature, wind ...
 
 try:
-  opts, args = getopt.getopt(argv,"hi:o:m:p:r:t:c:",["ifile=","ofile=","month=","predict=","real=","typesys=","dayspredict="])
+  opts, args = getopt.getopt(argv,"hi:o:m:r:t:d:",["ifile=","ofile=","month=","real=","typesys=","dayspredict="])
 except getopt.GetoptError:
-  print 'test.py -i <training> -o <outputfile> -m <month> -p <predict> -r <real> -t <typesys> -d <dayspredict>'
+  print 'test.py -i <training> -o <outputfile> -m <month> -r <real> -t <typesys> -d <dayspredict>'
   sys.exit(2)
 for opt, arg in opts:
   if opt == '-h':
-     print 'test.py -i <training> -o <outputfile> -m <month> -p <predict> -r <real> -t <typesys>'
+     print 'test.py -i <training> -o <outputfile> -m <month> -r <real> -t <typesys>'
      sys.exit()
   elif opt in ("-i", "--ifile"):
      training = arg
-  elif opt in ("-p", "--predict"):
-     predict = arg
   elif opt in ("-r", "--real"):
      real = arg
   elif opt in ("-o", "--ofile"):
      outputfile = arg
   elif opt in ("-m", "--month"):
-     month = arg
+     month = int(arg)
   elif opt in ("-t", "--typesys"):
      typesys = arg #du bao ve gi mua , nhiet do
   elif opt in ("-d", "--dayspredict"):
      days_predict = int(arg) #how many day for predict
 
+dirpath = os.path.dirname(os.path.abspath(__file__))
 day_of_months = [0,31,28,31,30,31,30,31,31,30,31,30,31]
-dataset = genfromtxt(open(month,'r'), delimiter=',', dtype='f8')[0:]
+dataset = genfromtxt(open(dirpath+'/../data/'+str(month)+'.csv','r'), delimiter=',', dtype='f8')[0:]
 X = dataset[:,int(typesys)]
-days_in_year = day_of_months[month]; #create a observertion
+days_in_year = day_of_months[int(month)]; #create a observertion
 differenced = difference(X, days_in_year)
 
 # fit model
@@ -127,7 +127,7 @@ elif typesys == '6':# gio
 model_fit = model.fit(disp=0)
 # multi-step out-of-sample forecast
 start_index = len(differenced)+1
-end_index = start_index + (days-2) # -> preidct 30 next
+end_index = start_index + (days_predict-2) # -> preidct 30 next
 forecast = model_fit.predict(start=start_index, end=end_index)
 # invert the differenced forecast to something usable
 #print forecast, len(forecast)
