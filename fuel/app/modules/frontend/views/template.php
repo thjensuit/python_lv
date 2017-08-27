@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -81,10 +81,11 @@
                             </span>
                             </div>
                             <!-- /input-group -->
-                        </li>
+                        </li>  
 
                         <li>
-                            <a href="/"><i class="fa fa-dashboard fa-fw"></i> Trang dự báo</a>
+                            <a href="/"><i class="fa fa-dashboard fa-fw"></i> Trang Hieu Chinh</a>
+                            <a href="/dubao/"><i class="fa fa-dashboard fa-fw"></i> Trang Du Bao</a>
                         </li>
                     </ul>
                 </div>
