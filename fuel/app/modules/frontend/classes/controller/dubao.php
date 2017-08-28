@@ -57,6 +57,7 @@ class Controller_DuBao extends Controller_Base{
                 $trainingFile = APPPATH_USERFILE . $newfilename;
                 $execComd = 'sudo -u khanhkid python '.PYTHONPATH.'source/DuBao.py -i '.$trainingFile.' -o '.APPPATH_USERFILE.' -p '.$predictFile." -t ".$partName.$realFile;
             } 
+            echo $execComd;
             $linkResult = exec($execComd);
             if($linkResult != ""){
                 $linkResult = json_decode($linkResult);

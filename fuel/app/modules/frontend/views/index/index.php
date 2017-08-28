@@ -55,8 +55,8 @@
     <div class="col-lg-6 col-md-6">
         <form method="post" id="fr_submit" enctype="multipart/form-data" >
             <div class="form-group">
-                <input type="radio" id="systemFile" name="sysType" value="1" checked> Sử dụng dữ liệu hệ thống 
-                <input type="radio" id="clientFile" name="sysType" value="2" <?=(isset($_POST['sysType']) && $_POST['sysType']== 2)?'checked':''?>> Sử dụng dữ liệu cá nhân
+                <input type="radio" id="systemFile" name="sysType" value="1" checked> Sử dụng dữ liệu CFSR 
+                <input type="radio" id="clientFile" name="sysType" value="2" <?=(isset($_POST['sysType']) && $_POST['sysType']== 2)?'checked':''?>> Sử dụng dữ liệu thực đo
             </div>
             <div class="form-group" id="clientPart" <?=(isset($_POST['sysType']) && $_POST['sysType']== 2)?'':'style="display: none"'?>>
                 <div id="clientFile_option"><div class="form-group">File huấn luyện: <input type="file" name="training" id="training"></div></div>
@@ -118,7 +118,7 @@
     if (isset($indexAlogithm))
         echo "<p>Các chỉ số đánh giá thuật toán:".$indexAlogithm." </p>";
 ?>
-<p>Download kết quả dự báp: <?=isset($fileDownload)?'<a href="/userfiles/'.$fileDownload.'" target="_blank">Download</a>':"";?></p>
+<p>Download kết quả dự báo: <?=isset($fileDownload)?'<a href="/userfiles/'.$fileDownload.'" target="_blank">Download</a>':"";?></p>
 <div id="linechart_material" style="width: 900px; height: 500px"></div>
 
 <script type="text/javascript">
