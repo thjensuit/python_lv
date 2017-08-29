@@ -98,29 +98,29 @@ for opt, arg in opts:
   elif opt in ("-m", "--month"):
      month = int(arg)
   elif opt in ("-t", "--typesys"):
-     typesys = arg #du bao ve gi mua , nhiet do
+     typesys = int(arg) #du bao ve gi mua , nhiet do
   elif opt in ("-d", "--dayspredict"):
      days_predict = int(arg) #how many day for predict
 
 dirpath = os.path.dirname(os.path.abspath(__file__))
 day_of_months = [0,31,28,31,30,31,30,31,31,30,31,30,31]
 dataset = genfromtxt(open(dirpath+'/../data/'+str(month)+'.csv','r'), delimiter=',', dtype='f8')[0:]
-X = dataset[:,int(typesys)]
+X = dataset[:,typesys]
 days_in_year = day_of_months[int(month)]; #create a observertion
 differenced = difference(X, days_in_year)
 
 # fit model
-if typesys == '1':#mua
+if typesys == 1:#mua
 	model = ARIMA(differenced, order=(5,1,0))
-elif typesys == '2':#doam
+elif typesys == 2:#doam
 	model = ARIMA(differenced, order=(1,0,0))
-elif typesys == '3':#nhietdocao
+elif typesys == 3:#nhietdocao
 	model = ARIMA(differenced, order=(5,1,0))
-elif typesys == '4':#nang luong mat troi
+elif typesys == 4:#nang luong mat troi
 	model = ARIMA(differenced, order=(2,1,0))
-elif typesys == '5':# nhiet do thap
+elif typesys == 5:# nhiet do thap
 	model = ARIMA(differenced, order=(4,1,0))
-elif typesys == '6':# gio
+elif typesys == 6:# gio
 	model = ARIMA(differenced, order=(2,0,1))
 
 
@@ -144,10 +144,13 @@ for yhat in forecast:
 real_y = [];
 if real != "":
 	real_y = genfromtxt(open(real,'r'), delimiter=',', dtype='f8')[0:]
-	
-savetxt(outputfile+'dubao_predict_.txt', y_pred, delimiter=',')
-result = [outputfile+'dubao_predict_.txt']
+
+
+import time
+millis = int(round(time.time() * 1000))
+savetxt(outputfile+'dubao_predict_'+str(millis)+'.txt', y_pred, delimiter=',')
+result = [outputfile+'dubao_predict_'+str(millis)+'.txt']
 if len(real_y)>0:
-	caculateIndex(y_pred,real_y,outputfile+"dubao_index_.txt")
-	result = [outputfile+'dubao_predict_.txt',outputfile+"dubao_index_.txt"]
+	caculateIndex(y_pred,real_y,outputfile+"dubao_index_"+str(millis)+".txt")
+	result = [outputfile+'dubao_predict_'+str(millis)+'.txt',outputfile+"dubao_index_"+str(millis)+".txt"]
 print json.dumps(result)

@@ -112,7 +112,7 @@
     if (isset($indexAlogithm))
         echo "<p>Các chỉ số đánh giá thuật toán:".$indexAlogithm." </p>";
 ?>
-<p>Download kết quả dự báp: <?=isset($fileDownload)?'<a href="/userfiles/'.$fileDownload.'" target="_blank">Download</a>':"";?></p>
+<p>Download kết quả dự báo: <?=isset($fileDownload)?'<a href="/userfiles/'.$fileDownload.'" target="_blank">Download</a>':"";?></p>
 <div id="linechart_material" style="width: 900px; height: 500px"></div>
 
 <script type="text/javascript">

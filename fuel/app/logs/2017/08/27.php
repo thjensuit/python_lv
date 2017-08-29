@@ -85,3 +85,28 @@ WARNING - 2017-08-27 19:26:46 --> Fuel\Core\Fuel::init - The configured locale e
 WARNING - 2017-08-27 19:26:50 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
 WARNING - 2017-08-27 19:26:54 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
 WARNING - 2017-08-27 19:28:34 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 19:42:00 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 19:42:14 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 19:42:43 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+ERROR - 2017-08-27 19:42:43 --> Notice - Undefined variable: linkResult in /home/khanhkid/Desktop/website/website_thesis/fuel/app/modules/frontend/classes/controller/dubao.php on line 61
+WARNING - 2017-08-27 19:42:47 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 19:42:53 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+ERROR - 2017-08-27 19:42:53 --> Notice - Undefined variable: linkResult in /home/khanhkid/Desktop/website/website_thesis/fuel/app/modules/frontend/classes/controller/dubao.php on line 61
+WARNING - 2017-08-27 19:43:06 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 19:44:51 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 19:47:53 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 19:48:19 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 19:49:12 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 19:55:26 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 19:55:40 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 19:55:48 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 19:55:55 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 19:56:15 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 19:56:17 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 19:56:26 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 19:56:26 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 19:56:34 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 19:57:06 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 20:00:56 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 20:01:05 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2017-08-27 20:01:27 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
