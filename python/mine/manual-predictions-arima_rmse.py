@@ -1,4 +1,5 @@
 #https://machinelearningmastery.com/grid-search-arima-hyperparameters-with-python/
+# Print RMSE
 from pandas import Series
 from matplotlib import pyplot
 from statsmodels.tsa.arima_model import ARIMA

@@ -1,10 +1,3 @@
-print(__doc__)
-
-
-# Code source: Jaques Grobler
-# License: BSD 3 clause
-
-
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import datasets, linear_model
@@ -13,6 +6,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 # Load the diabetes dataset
 diabetes = datasets.load_diabetes()
 
+print(diabetes);
 # Use only one feature
 diabetes_X = diabetes.data[:, np.newaxis, 2]
 
@@ -23,9 +17,6 @@ diabetes_X_test = diabetes_X[-20:]
 # Split the targets into training/testing sets
 diabetes_y_train = diabetes.target[:-20]
 diabetes_y_test = diabetes.target[-20:]
-print diabetes
-print diabetes_X
-print diabetes_y_train
 
 # Create linear regression object
 regr = linear_model.LinearRegression()
