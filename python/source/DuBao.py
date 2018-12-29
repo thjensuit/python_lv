@@ -40,10 +40,10 @@ def dochinhxac(y_true,y_pred):
 def caculateIndex(arrPredict,test_y,dirPath = "",strDetail=""):
 	key = 0;
 	Sum_ME = 0;
-	Sum_MEA = 0;		
-	Sum_RMSE = 0;		
+	Sum_MEA = 0;
+	Sum_RMSE = 0;
 	for i in arrPredict:
-		# caculate 
+		# caculate
 		Sum_ME += (arrPredict[key]-test_y[key])
 		# (MAE)
 		Sum_MEA += abs(arrPredict[key]-test_y[key])
@@ -57,7 +57,7 @@ def caculateIndex(arrPredict,test_y,dirPath = "",strDetail=""):
 	with open(dirPath, "ab") as myfile:
 		myfile.write("%s, ME: %s,MEA: %s,RMSE: %s, Do Chinh Xac: %s\n" % (strDetail, AVG_ME,AVG_MEA,AVG_RMSE,PercentChinhXac))
 
- 
+
 # create a differenced series
 def difference(dataset, interval=1):
 	diff = list()
@@ -65,7 +65,7 @@ def difference(dataset, interval=1):
 		value = dataset[i] - dataset[i - interval]
 		diff.append(value)
 	return numpy.array(diff)
- 
+
 # invert differenced value
 def inverse_difference(history, yhat, interval=1):
 	return yhat + history[-interval]
@@ -76,7 +76,8 @@ training = '' # link data train for user
 predict = '' # link data predict
 real = '' # link data real
 outputfile = '' # output path
-month = '' # link month data follow using our system
+# month = '' # link month data follow using our system
+month = 1 # link month data follow using our system
 typesys = '' # precication, tempurature, wind ...
 days_predict = 30 # precication, tempurature, wind ...
 
@@ -103,7 +104,8 @@ for opt, arg in opts:
      days_predict = int(arg) #how many day for predict
 
 dirpath = os.path.dirname(os.path.abspath(__file__))
-day_of_months = [0,31,28,31,30,31,30,31,31,30,31,30,31]
+# day_of_months = [0,31,28,31,30,31,30,31,31,30,31,30,31]
+day_of_months = [1]
 dataset = genfromtxt(open(dirpath+'/../data/'+str(month)+'.csv','r'), delimiter=',', dtype='f8')[0:]
 X = dataset[:,typesys]
 days_in_year = day_of_months[int(month)]; #create a observertion
@@ -133,7 +135,7 @@ forecast = model_fit.predict(start=start_index, end=end_index)
 #print forecast, len(forecast)
 history = [x for x in X]
 day = 1
-y_pred = [] 
+y_pred = []
 for yhat in forecast:
 	inverted = inverse_difference(history, yhat, days_in_year)
 	history.append(inverted)
